@@ -5,13 +5,15 @@
 
         <style>
             body {
-                padding: 20px;
-                margin: 20px;
+                padding: 0px;
+                margin: 0px;
+                background-color: #f8fafc;
+                font-family: sans-serif;
             }
 
             .box {
                 border-radius: 20px;
-                background-color: bisque;
+                background-color: rgb(202, 202, 202);
                 padding: 20px;
             }
 
@@ -19,20 +21,36 @@
                 width: 100%;
                 height: 100px;
             }
+
+            .top {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .top h3 {
+                margin-bottom: 12px;
+                color: #333;
+            }
         </style>
     </head>
 
     <body>
-        <h1>文字数カウント</h1>
+        <div id="header"></div>
 
-        <a href="/">戻る</a><br><br>
+        <div class="top">
+            <h1>文字数カウント</h1>
 
-        <div class="box">
-            <textarea id="textinput" placeholder="ここに文字を入力するとカウントされます"></textarea>
+            <a href="/">戻る</a><br><br>
 
-            <p id="count">文字数: 0</p>
+            <div class="box">
+                <textarea id="textinput" placeholder="ここに文字を入力するとカウントされます"></textarea>
+
+                <p id="count">文字数: 0</p>
+            </div>
         </div>
     </body>
+
+    <script src="/header.js"></script>
 
     <script>
         const countDisplay = document.getElementById("count");

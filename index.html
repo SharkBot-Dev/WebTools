@@ -1,34 +1,87 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Webツール集</title>
 
         <style>
             body {
+                padding: 0px;
+                margin: 0px;
+                background-color: #f8fafc;
+                font-family: sans-serif;
+            }
+
+            .top {
                 padding: 20px;
                 margin: 20px;
             }
 
-            .box {
-                border-radius: 20px;
-                background-color: rgb(179, 177, 176);
-                padding: 20px;
+            .top h3 {
+                margin-bottom: 12px;
+                color: #333;
             }
 
-            .box h3 {
+            .box {
+                border-radius: 8px;
+                background-color: #ffffff;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
+            }
+
+            .box ul {
+                padding: 0px;
                 margin: 0px;
+                list-style: none;
+            }
+
+            .box li {
+                margin: 0px;
+                padding: 0px;
+                border-bottom: 1px solid #edf2f7;
+            }
+
+            .box li:last-child {
+                border-bottom: none;
+            }
+
+            .box li a {
+                display: block;
+                padding: 16px 20px;
+                text-decoration: none;
+                color: #2d3748;
+                font-weight: bold;
+                transition: background-color 0.2s;
+            }
+
+            .box li a:hover {
+                background-color: #f7fafc;
             }
         </style>
     </head>
 
     <body>
-        <h1>Webツール集</h1>
+        <div id="header"></div>
 
-        <div class="box">
+        <div class="top">
+            <h1>Webツール集</h1>
+
+            <h3>Discord系</h3>
+            <div class="box">
+                <ul>
+                    <li><a href="/discord/emoji_image.html">絵文字を画像URL化</a></li>
+                </ul>
+            </div>
+
             <h3>カウンター</h3>
-            <ul>
-                <li><a href="/counter/string.html">文字数カウント</a></li>
-            </ul>
+            <div class="box">
+                <ul>
+                    <li><a href="/counter/string.html">文字数カウント</a></li>
+                </ul>
+            </div>
         </div>
     </body>
+
+    <script src="/header.js"></script>
 </html>
