@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>文字数カウント</title>
+        <title>絵文字から画像URLに</title>
 
         <style>
             body {
@@ -20,6 +20,7 @@
             .box textarea {
                 width: 100%;
                 height: 100px;
+                box-sizing: border-box;
             }
 
             .top {
@@ -30,6 +31,19 @@
             .top h3 {
                 margin-bottom: 12px;
                 color: #333;
+            }
+
+            #emojiImageInner {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            #emojiImageInner img {
+                width: 48px;
+                height: 48px;
+                object-fit: contain;
             }
         </style>
     </head>
@@ -43,9 +57,9 @@
             <a href="/">戻る</a><br><br>
 
             <div class="box">
-                <input id="emoji" placeholder="Discord絵文字を入力してください。"></input><br>
+                <textarea id="emoji" placeholder="Discord絵文字を入力してください。"></textarea><br>
 
-                <img id="emojiImage">
+                <div id="emojiImageInner"></div>
             </div>
         </div>
     </body>
@@ -65,7 +79,7 @@
                 const emojiId = match[2];
                 const isAnimated = fullEmoji.startsWith("<a:");
 
-                results.append ? results.push([name, emojiId, isAnimated]) : results.push([name, emojiId, isAnimated]);
+                results.push({ name, emojiId, isAnimated });
             }
 
             return results;
@@ -73,18 +87,20 @@
 
         document.getElementById("emoji").addEventListener('input', (event) => {
             const emojis = extractDiscordEmojiInfo(event.target.value);
-            const emojiImage = document.getElementById("emojiImage");
+            const emojiImage = document.getElementById("emojiImageInner");
+            
+            emojiImage.innerHTML = "";
 
-            if (emojis.length != 0) {
-                const name = emojis[0][0];
-                const emojiId = emojis[0][1];
-                const isAnimated = emojis[0][2];
-                if (isAnimated) {
-                    emojiImage.src = `https://cdn.discordapp.com/emojis/${emojiId}.gif`
-                } else {
-                    emojiImage.src = `https://cdn.discordapp.com/emojis/${emojiId}.png`
-                }
-            }
+            emojis.forEach((emoji) => {
+                const img = document.createElement("img");
+                const ext = emoji.isAnimated ? "gif" : "png";
+                
+                img.src = `https://cdn.discordapp.com/emojis/${emoji.emojiId}.${ext}`;
+                img.alt = emoji.name;
+                img.title = `:${emoji.name}:`;
+                
+                emojiImage.appendChild(img);
+            });
         });
     </script>
 </html>
